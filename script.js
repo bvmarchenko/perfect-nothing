@@ -73,8 +73,8 @@ function renderEnvelopes() {
   container.appendChild(track);
 
   setTimeout(() => {
-    localStorage.setItem("guest", JSON.stringify(matchedGuest));
-    window.location.href = "invite.html";
+    const guestName = matchedGuest.name;
+    window.location.href = `invite.html?name=${encodeURIComponent(guestName)}`;
   }, 4000);
 }
 
