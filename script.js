@@ -1,6 +1,3 @@
-
-let matchedGuest = null;
-
 async function findGuest() {
   const nameInput = document.getElementById("name-input");
   const name = nameInput.value.trim();
@@ -29,53 +26,53 @@ async function findGuest() {
 
 
   const matchedGuest = guestsData.find(
-    guest => guest.name.toLowerCase() === name.toLowerCase()
-  );
+    guest => guest.name.toLowerCase() === name.toLowerCase()
+  );
 
-  if (matchedGuest) {
-    notFoundMsg.style.display = "none";
-
-
-    document.getElementById("guest-introduction").style.display = "none";
-    document.getElementById("envelope-search-screen").style.display = "flex";
+  if (matchedGuest) {
+    notFoundMsg.style.display = "none";
 
 
-    localStorage.setItem("guest", JSON.stringify(matchedGuest));
+    document.getElementById("guest-introduction").style.display = "none";
+    document.getElementById("envelope-search-screen").style.display = "flex";
 
-    renderEnvelopes();
-  } else {
+
+    localStorage.setItem("guest", JSON.stringify(matchedGuest));
+    
+    renderEnvelopes(matchedGuest); 
+  } else {
     notFoundMsg.textContent = "Здається, запрошення відсутнє";
     notFoundMsg.style.display = "block";
   }
 }
 
 
-function renderEnvelopes() {
-  const container = document.getElementById("search-list");
-  const title = document.getElementById("search-title");
+function renderEnvelopes(matchedGuest) { 
+  const container = document.getElementById("search-list");
+  const title = document.getElementById("search-title");
 
-  container.innerHTML = "";
-  title.textContent = "Шукаємо твоє запрошення…";
+  container.innerHTML = "";
+  title.textContent = "Шукаємо твоє запрошення…";
 
-  container.className = "envelopes scrolling";
+  container.className = "envelopes scrolling";
 
-  const track = document.createElement("div");
-  track.className = "scroll-track";
+  const track = document.createElement("div");
+  track.className = "scroll-track";
 
-  for (let r = 0; r < 2; r++) {
-    for (let i = 0; i < 10; i++) {
-      const env = document.createElement("div");
-      env.className = "envelope";
-      track.appendChild(env);
-    }
-  }
+  for (let r = 0; r < 2; r++) {
+    for (let i = 0; i < 10; i++) {
+      const env = document.createElement("div");
+      env.className = "envelope";
+      track.appendChild(env);
+    }
+  }
 
-  container.appendChild(track);
+  container.appendChild(track);
 
-  setTimeout(() => {
-    const guestName = matchedGuest.name;
-    window.location.href = `invite.html?name=${encodeURIComponent(guestName)}`;
-  }, 4000);
+  setTimeout(() => {
+    const guestName = matchedGuest.name;
+    window.location.href = `invite.html?name=${encodeURIComponent(guestName)}`;
+  }, 4000);
 }
 
 
