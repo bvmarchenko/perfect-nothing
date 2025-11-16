@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+
+<head>
+  <title>Запрошення</title>
+</head>
+
+<body background="bkflowers.jpg">
+  <div style="height: 100px;"></div>
+  <div class="panels">
+    <div class="panel invite-panel-override">
+      <p class="small-title">Запрошення на урочистості з нагоди Весілля</p>
+
+      <p class="names">Владислава та Дани</p>
+
+      <p class="main-title">Запрошуємо</p>
+
+      <p class="guest-name" id="guest-name"></p>
+
+      <p class="subtitle">
+        засвідчити створення нашого<br>
+        офіційного життєвого альянсу
+      </p>
+
+      <p class="date">04.10.25!</p>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      const guestJSON = localStorage.getItem("guest");
+
+      if (guestJSON) {
+        const guest = JSON.parse(guestJSON);
+
+        if (guest.name && typeof toAccusative === 'function') {
+          const accusative = toAccusative(guest.name, guest.gender);
+          document.getElementById("guest-name").textContent = accusative;
+        } else {
+          document.getElementById("guest-name").textContent = guest.name;
+        }
+      }
+    </script>
+
+    <div class="panel invite-panel-override">
+      <div class="schedule-block">
+        <p class="schedule-title">Розклад</p>
+
+        <div class="schedule-item">
+          <span class="time">10:00</span>
+          <p class="event-text">Церемонія розпису<br>просп. Берестейський 11</p>
+        </div>
+
+        <div class="schedule-item">
+          <span class="time">11:30</span>
+          <p class="event-text">Вінчання<br>вул. О. Кониського 24</p>
+        </div>
+
+        <div class="schedule-item">
+          <span class="time">12:30</span>
+          <p class="event-text">Прогулка<br>Пейзажною Алеєю</p>
+        </div>
+
+        <div class="schedule-item">
+          <span class="time">14:00</span>
+          <p class="event-text">Кафе Charlotte<br>вул. О. Кониського 55</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+</body>
+
+
+</html>

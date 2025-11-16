@@ -1,0 +1,262 @@
+body {
+  margin: 0;
+  font-family: "BasicFont", serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  letter-spacing: 2px;
+  font-size: 120%;
+
+  padding-top: 20px; 
+  padding-bottom: 20px;
+}
+
+@font-face {
+  font-family: "BasicFont";
+  src: url("Magic_Love.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SecFont";
+  src: url("MISTRAL.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+.panel {
+  width: 60%;
+  height: 96vh;   
+  background-color: rgba(48, 55, 29, 0.95);
+  border-radius: 15px;
+  color: #a69480;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+
+  position: relative; 
+
+  overflow: hidden;   
+}
+
+.panels {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center; 
+  width: 100%;
+}
+
+.panel-content {
+  position: absolute; 
+  inset: 0;          
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+
+  padding: 20px;
+  text-align: center;
+}
+
+
+/* === Екран введення імені === */
+
+#guest-introduction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  color: #a69480;
+  text-align: center;
+  text-wrap-style: pretty;
+}
+
+input {
+  background-color: #cfc2af;
+  padding: 10px;
+  font-size: 16px;
+  font-family: 'Times New Roman', Times, serif;
+  border-radius: 8px;
+  border: 1px solid #cfc2af;
+  width: 250px;
+}
+input::placeholder {
+  color: #9b8c79;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: 'Times New Roman', Times, serif;
+  border: none;
+  border-radius: 8px;
+  background-color: #8a6150;
+  color: #502a1e;
+  cursor: pointer;
+}
+
+#not-found-msg {
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 0;
+}
+
+/* === Екран пошуку запрошення === */
+
+#envelope-search-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+#search-title {
+  color: #a69480;
+}
+
+.envelopes {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  transition: all 0.5s ease;
+}
+
+.envelopes.centered {
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+/* ===== Анімація прокрутки конвертів ===== */
+.envelopes.scrolling {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  max-width: 600px;
+  padding: 10px;
+  position: relative;
+}
+
+.scroll-track {
+  display: flex;
+  gap: 15px;
+  animation: scrollLoop 4s linear infinite;
+}
+
+.envelope {
+  width: 120px;
+  height: 80px;
+  background-image: url("bkenvelopes.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+  outline: none;
+}
+
+@keyframes scrollLoop {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-25%); }
+}
+
+/* === invite.html === */
+
+.invite-panel-override {
+ justify-content: flex-start; 
+ 
+ height: auto; 
+ min-height: 98%;
+ 
+ padding-top: 50px; 
+}
+.small-title {
+  font-size: 24px;
+  font-family: "BasicFont";
+}
+
+.names {
+  font-size: 36px;
+  font-family: 'BasicFont', serif;
+  color: #89604f; 
+  margin: 15px 0;
+}
+
+.main-title {
+  font-size: 48px;
+  font-family: "BasicFont", serif;
+  margin: 25px 0;
+}
+
+.subtitle {
+  font-size: 22px;
+  font-family: "BasicFont", serif;
+  line-height: 1.4;
+}
+
+.date {
+  font-size: 48px;
+  font-family: "BasicFont", serif;
+  margin-top: 25px;
+}
+
+#guest-name {
+  font-size: 59px;
+  font-family: "SecFont", serif;
+  color: #a69480;
+  margin: 10px 0 20px;
+}
+
+/* --- Стилі для розкладу --- */
+
+.schedule-block { 
+ width: 100%;
+ text-align: center;
+ padding: 0 5%; 
+ box-sizing: border-box;
+}
+
+.schedule-title {
+ font-size: 48px;
+ font-family: "BasicFont", serif;
+ color: #a69480; 
+ margin-bottom: 30px;
+}
+
+.schedule-item {
+ display: flex;
+ align-items: flex-start; 
+ gap: 20px;
+ margin-bottom: 25px;
+
+ margin-left: center;
+ margin-right: auto;
+}
+
+.time {
+ font-size: 36px;
+ font-family: "BasicFont", serif;
+ color: #8a6150; 
+ flex-shrink: 0; 
+ width: 100px;
+ text-align: right;
+}
+
+.event-text {
+ font-size: 32px;
+ font-family: "BasicFont", serif;
+ color: #a69480;
+ text-align: left; 
+ margin: 0;
+}

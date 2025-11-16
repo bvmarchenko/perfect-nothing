@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  
+  <head>
+    <title>Архів запрошень</title>
+  </head>
+
+  <body background = "bkflowers.jpg">
+    <div style="height: 100px;"></div> 
+    <div class="panel">
+      <div id="guest-introduction" class="panel-content active">
+        <h2 id="introduction-info">
+          <p>Вітаю!</p> 
+          <p>Тут архів запрошеннь на весілля.</p>
+        </h2>
+        <h3 id="introduction-info">Знайдіть своє запрошення за ім'ям</h3>
+
+        <input type="text" id="name-input" placeholder="Тарас Шевченко">
+        <button onclick="findGuest()">Знайти запрошення</button>
+        
+        <p id="not-found-msg" style="color: rgb(255, 66, 66); display: none;">
+          Здається, запрошення відсутнє
+        </p>
+      </div>
+
+      <div id="envelope-search-screen" class="panel-content" style="display: none;">
+        <h2 id="search-title"> Шукаємо твоє запрошення… </h2>
+    
+        <div class="envelopes" id="search-list"></div>
+      </div>
+
+      <script src="script.js"></script>
+    </div>
+    
+  </body>
+
+
+</html>
