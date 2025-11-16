@@ -1,53 +1,49 @@
 async function findGuest() {
-  const nameInput = document.getElementById("name-input");
-  const name = nameInput.value.trim();
-  const notFoundMsg = document.getElementById("not-found-msg");
+  const nameInput = document.getElementById("name-input");
+  const name = nameInput.value.trim();
+  const notFoundMsg = document.getElementById("not-found-msg");
 
-  if (!name) {
-    notFoundMsg.textContent = "Будь ласка, введіть ім'я.";
-    notFoundMsg.style.display = "block";
-    return;
-  }
+  if (!name) {
+    notFoundMsg.textContent = "Будь ласка, введіть ім'я.";
+    notFoundMsg.style.display = "block";
+    return;
+  }
 
+  let guestsData = [];
+  try {
+    const response = await fetch('guests.json');
+    if (!response.ok) {
+      throw new Error(`Помилка завантаження: ${response.status}`);
+    }
+    guestsData = await response.json();
+  } catch (error) {
+    console.error("Помилка завантаження бази гостей:", error);
+    notFoundMsg.textContent = "Не вдалося завантажити список гостей. Спробуйте пізніше.";
+    notFoundMsg.style.display = "block";
+    return;
+  }
 
-  let guestsData = [];
-  try {
-    const response = await fetch('guests.json');
-    if (!response.ok) {
-      throw new Error(`Помилка завантаження: ${response.status}`);
-    }
-    guestsData = await response.json();
-  } catch (error) {
-    console.error("Помилка завантаження бази гостей:", error);
-    notFoundMsg.textContent = "Не вдалося завантажити список гостей. Спробуйте пізніше.";
-    notFoundMsg.style.display = "block";
-    return;
-  }
-
-
-  const matchedGuest = guestsData.find(
+  const matchedGuest = guestsData.find(
     guest => guest.name.toLowerCase() === name.toLowerCase()
   );
 
   if (matchedGuest) {
     notFoundMsg.style.display = "none";
 
-
     document.getElementById("guest-introduction").style.display = "none";
     document.getElementById("envelope-search-screen").style.display = "flex";
 
-
     localStorage.setItem("guest", JSON.stringify(matchedGuest));
-    
+
     renderEnvelopes(matchedGuest); 
   } else {
-    notFoundMsg.textContent = "Здається, запрошення відсутнє";
-    notFoundMsg.style.display = "block";
-  }
+    notFoundMsg.textContent = "Здається, запрошення відсутнє";
+    notFoundMsg.style.display = "block";
+  }
 }
 
 
-function renderEnvelopes(matchedGuest) { 
+function renderEnvelopes(guestData) { 
   const container = document.getElementById("search-list");
   const title = document.getElementById("search-title");
 
@@ -70,10 +66,9 @@ function renderEnvelopes(matchedGuest) {
   container.appendChild(track);
 
   setTimeout(() => {
-    const guestName = matchedGuest.name;
+    const guestName = guestData.name; 
     window.location.href = `invite.html?name=${encodeURIComponent(guestName)}`;
   }, 4000);
-}
 
 
 function toAccusative(name, gender = "male") {
