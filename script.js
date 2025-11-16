@@ -69,7 +69,7 @@ function renderEnvelopes(guestData) {
     const guestName = guestData.name; 
     window.location.href = `invite.html?name=${encodeURIComponent(guestName)}`;
   }, 4000);
-
+}
 
 function toAccusative(name, gender = "male") {
   const parts = name.trim().split(" ");
