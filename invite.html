@@ -27,43 +27,44 @@
       <p class="date">04.10.25!</p>
     </div>
 
-    <script src="script.js"></script>
-    <script>
-// Отримуємо ім'я гостя з параметра URL
+<script src="script.js"></script>
+<script>
     const urlParams = new URLSearchParams(window.location.search);
     const encodedGuestName = urlParams.get('name');
     
     if (!encodedGuestName) {
         document.getElementById("guest-name").textContent = "Шановний Гість";
         console.warn("Ім'я гостя відсутнє в URL.");
-        return;
-    }
-    
-    const guestName = decodeURIComponent(encodedGuestName);
-    async function loadAndDisplayGuest(targetName) {
-        let guestsData = [];
-        try {
-            const response = await fetch('guests.json'); 
-            guestsData = await response.json(); 
-        } catch (error) {
-            console.error("Помилка завантаження бази гостей:", error);
-            document.getElementById("guest-name").textContent = targetName;
-            return;
-        }
+    } else {
+        const guestName = decodeURIComponent(encodedGuestName);
+        
+        async function loadAndDisplayGuest(targetName) {
+            let guestsData = [];
+            try {
+                const response = await fetch('guests.json'); 
+                guestsData = await response.json(); 
+            } catch (error) {
+                console.error("Помилка завантаження бази гостей:", error);
+                document.getElementById("guest-name").textContent = targetName;
+                return; 
+            }
 
-        const guest = guestsData.find(g => g.name.toLowerCase() === targetName.toLowerCase());
+            const guest = guestsData.find(g => g.name.toLowerCase() === targetName.toLowerCase());
 
-        if (guest && typeof toAccusative === 'function') {
-            const accusative = toAccusative(guest.name, guest.gender);
-            document.getElementById("guest-name").textContent = accusative;
-        } else if (guest) {
-            document.getElementById("guest-name").textContent = guest.name;
-        } else {
-             document.getElementById("guest-name").textContent = targetName;
+            if (guest && typeof toAccusative === 'function') {
+                const accusative = toAccusative(guest.name, guest.gender);
+                document.getElementById("guest-name").textContent = accusative;
+            } else if (guest) {
+                document.getElementById("guest-name").textContent = guest.name;
+            } else {
+                document.getElementById("guest-name").textContent = targetName;
+            }
         }
+        
+        loadAndDisplayGuest(guestName);
     }
-    loadAndDisplayGuest(guestName);
-    </script>
+  </script>
+
 
     <div class="panel invite-panel-override">
       <div class="schedule-block">
