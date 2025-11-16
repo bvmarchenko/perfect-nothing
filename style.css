@@ -21,7 +21,7 @@ body {
 
 @font-face {
   font-family: "SecFont";
-  src: url("MISTRAL.ttf") format("truetype");
+  src: url("MISTRAL.TTF") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
